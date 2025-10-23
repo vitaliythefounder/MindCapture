@@ -10,9 +10,22 @@
 		FE5A89D72EAAABDA00A8B929 /* MindCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FE285EF62EAAC8FF008E2C28 /* Exceptions for "MindCapture" folder in "MindCapture" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FE5A89D62EAAABDA00A8B929 /* MindCapture */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FE5A89D92EAAABDA00A8B929 /* MindCapture */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FE285EF62EAAC8FF008E2C28 /* Exceptions for "MindCapture" folder in "MindCapture" target */,
+			);
 			path = MindCapture;
 			sourceTree = "<group>";
 		};
