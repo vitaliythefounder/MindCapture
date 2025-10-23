@@ -136,6 +136,10 @@ struct Constants {
         static let success = Color.green
         static let warning = Color.orange
         static let error = Color.red
+        #if os(macOS)
         static let background = Color(NSColor.windowBackgroundColor)
+        #else
+        static let background = Color(.systemBackground)
+        #endif
     }
 }

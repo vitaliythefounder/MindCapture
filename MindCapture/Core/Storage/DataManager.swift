@@ -100,9 +100,8 @@ class DataManager: ObservableObject {
 
         let descriptor = FetchDescriptor<Task>(
             predicate: #Predicate { task in
-                task.dueDate ?? Date.distantFuture >= today &&
-                task.dueDate ?? Date.distantPast < tomorrow &&
-                !task.isCompleted
+                guard let dueDate = task.dueDate else { return false }
+                return dueDate >= today && dueDate < tomorrow && !task.isCompleted
             },
             sortBy: [SortDescriptor(\.dueDate)]
         )
@@ -113,7 +112,8 @@ class DataManager: ObservableObject {
     func fetchUpcomingTasks(limit: Int = 3) -> [Task] {
         let descriptor = FetchDescriptor<Task>(
             predicate: #Predicate { task in
-                !task.isCompleted && task.dueDate ?? Date.distantFuture > Date()
+                guard let dueDate = task.dueDate, dueDate > Date() else { return false }
+                return !task.isCompleted
             },
             sortBy: [SortDescriptor(\.dueDate)]
         )
