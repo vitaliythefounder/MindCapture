@@ -58,7 +58,7 @@ class ClaudeClient: ObservableObject {
     private var apiKey: String
     private var model: String
 
-    init(apiKey: String = "", model: String = Constants.defaultClaudeModel) {
+    init(apiKey: String = "", model: String = "claude-sonnet-4-20250514") {
         self.apiKey = apiKey
         self.model = model
     }
