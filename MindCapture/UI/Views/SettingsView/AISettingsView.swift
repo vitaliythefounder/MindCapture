@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import _Concurrency
 
 struct AISettingsView: View {
     @EnvironmentObject var dataManager: DataManager
@@ -159,18 +160,20 @@ struct AISettingsView: View {
         isTestingKey = true
         testResult = nil
 
-        Task {
-            claudeClient.updateConfiguration(apiKey: apiKeyInput, model: settings?.model ?? Constants.defaultClaudeModel)
+        // Create async task for testing API key
+        Task { @MainActor in
+            claudeClient.updateConfiguration(
+                apiKey: apiKeyInput,
+                model: settings?.model ?? Constants.defaultClaudeModel
+            )
             let isValid = await claudeClient.testAPIKey()
 
-            await MainActor.run {
-                isTestingKey = false
-                if isValid {
-                    testResult = .success
-                    saveAPIKey()
-                } else {
-                    testResult = .failure("Invalid API key or network error")
-                }
+            isTestingKey = false
+            if isValid {
+                testResult = .success
+                saveAPIKey()
+            } else {
+                testResult = .failure("Invalid API key or network error")
             }
         }
     }
