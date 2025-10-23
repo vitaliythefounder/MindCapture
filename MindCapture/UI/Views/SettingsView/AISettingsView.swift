@@ -119,8 +119,10 @@ struct AISettingsView: View {
             }
 
             Section {
-                Link("Get API Key from Anthropic", destination: URL(string: "https://console.anthropic.com/")!)
-                    .foregroundColor(.blue)
+                if let url = URL(string: "https://console.anthropic.com/") {
+                    Link("Get API Key from Anthropic", destination: url)
+                        .foregroundColor(.blue)
+                }
 
                 Text("AI features require a Claude API key. Your key is never shared and only used for parsing tasks.")
                     .font(.caption)
