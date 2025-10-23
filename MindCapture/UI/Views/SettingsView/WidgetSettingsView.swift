@@ -99,7 +99,8 @@ struct WidgetSettingsView: View {
     }
 
     private func saveSettings() {
-        dataManager.updateSettings(dataManager.fetchSettings()!)
+        guard let appSettings = dataManager.fetchSettings() else { return }
+        dataManager.updateSettings(appSettings)
     }
 }
 
